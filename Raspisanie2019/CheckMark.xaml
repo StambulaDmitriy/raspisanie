@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="Raspisanie2019.CheckMark"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Raspisanie2019"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" 
+             d:DesignWidth="30"
+             HorizontalAlignment="Center"
+             VerticalAlignment="Center">
+    <Grid Name= "InnerGrid">
+        <Path Stroke="Green" 
+              StrokeEndLineCap="Round"
+              Opacity="0">
+            <Path.Data>
+                <PathGeometry x:Name="FrstRec">
+                    <PathFigure IsClosed="False" 
+                                StartPoint="5 25"
+                                >
+                        <ArcSegment Point="25,5" 
+                                    Size="1 1"
+                                    SweepDirection="Clockwise"
+                                    />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Green" 
+              StrokeEndLineCap="Round"
+              Opacity="0">
+            <Path.Data>
+                <PathGeometry x:Name="SecRec">
+                    <PathFigure IsClosed="False" 
+                                StartPoint="5 25"
+                                >
+                        <ArcSegment Point="25,5" 
+                                    Size="1 1"
+                                    SweepDirection="Counterclockwise"
+                                    />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path Stroke="Red" 
+              StrokeEndLineCap="Round" 
+              StrokeStartLineCap="Round"
+              Opacity="0">
+            <Path.Data>
+                <PathGeometry x:Name="CM">
+                    <PathFigure StartPoint="5 10">
+                        <LineSegment Point="15 23"/>
+                        <LineSegment Point="27 3"/>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Fill="Yellow" Stroke="Yellow" Opacity="0">
+            <Path.Data>
+                <EllipseGeometry x:Name="EllGeom1">
+                    <EllipseGeometry.Center> 5,25</EllipseGeometry.Center>
+                    <EllipseGeometry.RadiusX> 1</EllipseGeometry.RadiusX>
+                    <EllipseGeometry.RadiusY>1</EllipseGeometry.RadiusY>
+                </EllipseGeometry>
+            </Path.Data>
+        </Path>
+        <Path Fill="Yellow" Stroke="Blue" Opacity="0">
+            <Path.Data>
+                <EllipseGeometry x:Name="EllGeom2">
+                    <EllipseGeometry.Center>5,25</EllipseGeometry.Center>
+                    <EllipseGeometry.RadiusX>1</EllipseGeometry.RadiusX>
+                    <EllipseGeometry.RadiusY>1</EllipseGeometry.RadiusY>
+                </EllipseGeometry>
+            </Path.Data>
+        </Path>
+        <Path Fill="Yellow" Stroke="Purple" Opacity="0">
+            <Path.Data>
+                <EllipseGeometry x:Name="EllGeom3">
+                    <EllipseGeometry.Center>5 10</EllipseGeometry.Center>
+                    <EllipseGeometry.RadiusX>1</EllipseGeometry.RadiusX>
+                    <EllipseGeometry.RadiusY>1</EllipseGeometry.RadiusY>
+                </EllipseGeometry>
+            </Path.Data>
+        </Path>
+        <Canvas>
+            <Polyline Stroke="Green" 
+                      StrokeEndLineCap="Round" 
+                      StrokeStartLineCap="Square"
+                      Name="PolyLine1">
+            </Polyline>
+            <Polyline Stroke="Green" 
+                      StrokeEndLineCap="Round" 
+                      StrokeStartLineCap="Square"
+                      Name="PolyLine2">
+            </Polyline>
+            <Polyline Stroke="Red" 
+                      StrokeEndLineCap="Round" 
+                      StrokeStartLineCap="Round"
+                      Name="PolyLine3">
+            </Polyline>
+        </Canvas>
+    </Grid>
+</UserControl>

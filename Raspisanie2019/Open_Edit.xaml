@@ -1,0 +1,184 @@
+﻿<Window x:Class="Raspisanie2019.Open_Edit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Raspisanie2019"
+        mc:Ignorable="d"
+        Title="Выбор расписания" 
+        Height="450"
+        Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.95*"/>
+            <RowDefinition Height="0.95*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0"
+                   Grid.Row="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="id расписания:"/>
+        <ComboBox Name="cbIdRasp" 
+                  Grid.Column="1"
+                  Grid.Row="0"
+                  VerticalAlignment="Center"
+                  Margin="0 0 0 0"
+                  SelectionChanged="CbIdRasp_SelectionChanged"/>
+        <TextBlock Grid.Column="0"
+                   Grid.Row="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Вид подготовки:"/>
+        <ComboBox Name="cbVidPodg"
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  VerticalAlignment="Center"
+                  Margin="0 0 0 0"
+                  SelectionChanged="CbVidPodg_SelectionChanged"/>
+        <TextBlock Grid.Column="2"
+                   Grid.Row="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Факультет:"/>
+        <ComboBox Name="cbFak" 
+                  IsEnabled="False"
+                  Grid.Column="3"
+                  Grid.Row="0"
+                  VerticalAlignment="Center"
+                  Margin="0 0 0 0"
+                  SelectionChanged="CbFak_SelectionChanged"/>
+        <TextBlock Grid.Column="2"
+                   Grid.Row="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Профиль:"/>
+        <ComboBox Name="cbSpecial"
+                  Grid.Column="3"
+                  Grid.Row="1"
+                  VerticalAlignment="Center"
+                  Margin="0 0 0 0"
+                  SelectionChanged="CbSpecial_SelectionChanged"/>
+        <TextBlock Grid.Column="4"
+                   Grid.Row="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Учебный год:"/>
+        <Grid Grid.Column="5"
+              Grid.Row="0"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              Margin="00 0 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBox Name="tbYears"
+                     Grid.Column="0"
+                     Grid.Row="0" 
+                     VerticalAlignment="Center"
+                     MaxLength="4"
+                     Text="****"
+                     KeyDown="TbYears_KeyDown"
+                     PreviewTextInput="TbYears_PreviewTextInput"
+                     TextAlignment="Center"
+                     GotFocus="TbYears_GotFocus"
+                     CaretIndex="0"
+                     PreviewGotKeyboardFocus="TbYears_PreviewGotKeyboardFocus"
+                     PreviewKeyDown="TbYears_PreviewKeyDown"
+                     SelectionStart="0"
+                     KeyUp="TbYears_KeyUp"/>
+            <TextBlock Name="tbYear"
+                       
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"/>
+        </Grid>
+        <TextBlock Grid.Column="4"
+                   Grid.Row="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Год набора:"/>
+        <ComboBox Name="cbGodNabora"
+                  Grid.Column="5"
+                  Grid.Row="1"
+                  VerticalAlignment="Center"
+                  Margin="0 0 0 0"
+                  SelectionChanged="CbGodNabora_SelectionChanged"/>
+        <TextBlock Grid.Column="6"
+                   Grid.Row="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Семестр:"/>
+        <Grid Grid.Column="8">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <RadioButton x:Name="rbOsenniy"
+                         Content="Осенний"
+                         Grid.Row="0"
+                         VerticalAlignment="Center"
+                         Grid.ColumnSpan="2"
+                         Checked="RbOsenniy_Checked"/>
+            <RadioButton x:Name="rbVesenniy"
+                         Content="Весенний"
+                         Grid.Row="1"
+                         VerticalAlignment="Center"
+                         Grid.ColumnSpan="2"
+                         Checked="RbOsenniy_Checked"/>
+        </Grid>
+        <TextBlock Grid.Column="6"
+                   Grid.Row="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Группа:"/>
+        <ComboBox Name="cbGruppa"
+                  Grid.Column="8"
+                  Grid.Row="1"
+                  VerticalAlignment="Center"
+                  Margin="0 0 0 0"
+                  SelectionChanged="CbGruppa_SelectionChanged"/>
+        <DataGrid Name="DG" 
+                  ItemsSource="{Binding}"
+                  Grid.Row="2"
+                  Grid.ColumnSpan="8"
+                  HorizontalAlignment="Stretch"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  MouseDoubleClick="DataGridCell_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" 
+                                    IsReadOnly="True"
+                                    Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn Header="Группа"
+                                    IsReadOnly="True"
+                                    Binding="{Binding Path=gruppa}"/>
+                <DataGridTextColumn Header="Факультет"
+                                    IsReadOnly="True"
+                                    Binding="{Binding Path=namefak}"/>
+                <DataGridTextColumn Header="Учебный год"
+                                    IsReadOnly="True"
+                                    Binding="{Binding Path=Uch_god}"/>
+                <DataGridTextColumn Header="Семестр"
+                                    IsReadOnly="True"
+                                    Binding="{Binding Path=sem}"/>
+                <DataGridTextColumn Header="Вид подготовки"
+                                    IsReadOnly="True"
+                                    Binding="{Binding Path=namepodg}"/>
+            </DataGrid.Columns>
+            <DataGridCell MouseDoubleClick="DataGridCell_MouseDoubleClick"/>
+            <DataGridRow MouseDoubleClick="DataGridCell_MouseDoubleClick"/>
+        </DataGrid>
+    </Grid>
+</Window>

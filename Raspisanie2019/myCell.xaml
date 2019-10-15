@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Raspisanie2019.myCell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Raspisanie2019"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" 
+             d:DesignWidth="100" 
+             HorizontalAlignment="Stretch" 
+             VerticalAlignment="Stretch">
+    <Border BorderThickness="2" 
+            BorderBrush="LightGray">
+        <Grid MouseEnter="Grid_MouseEnter" 
+              MouseLeave="Grid_MouseLeave" 
+              VerticalAlignment="Stretch" 
+              HorizontalAlignment="Stretch" 
+              Height="auto" 
+              Width="auto" 
+              Background="AliceBlue" >
+            <DataGrid Name="InnerDataGrid" 
+                      HeadersVisibility="None" 
+                      AutoGenerateColumns="False"
+                      VerticalScrollBarVisibility="Disabled"
+                      HorizontalScrollBarVisibility="Disabled"
+                      IsReadOnly="True"
+                      RowHeight="100"
+                      ColumnWidth="145"
+                      CanUserAddRows="False"
+                      BorderThickness="0"
+                      IsHitTestVisible="False">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding AllAttr}" 
+                                           TextWrapping="WrapWithOverflow"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Width="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                            AncestorType={x:Type DataGrid}}, Path=Width}" 
+                                           FontFamily="Times New Roman"
+                                           FontSize="11"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Style.Setters>
+                            <Setter Property="BorderThickness" 
+                                    Value="0 1 0 0"/>
+                            <Setter Property="BorderBrush" 
+                                    Value="LightGray"/>
+                        </Style.Setters>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+        </Grid>
+    </Border>
+</UserControl>

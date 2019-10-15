@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="Raspisanie2019.myTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Raspisanie2019"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Margin="0" Background="White">
+    <Grid>
+        <DataGrid Name="myDataGrid" 
+                  Height="600" 
+                  AutoGenerateColumns="False"
+                  ColumnWidth="150" RowHeight="100" 
+                  GridLinesVisibility="All" 
+                  ItemsSource="{Binding mySources}" 
+                  CanUserAddRows="False" 
+                  SelectionUnit="CellOrRowHeader" 
+                  VerticalAlignment="Stretch" 
+                  HorizontalAlignment="Stretch"
+                  Grid.ColumnSpan="2"
+                  ClipboardCopyMode="ExcludeHeader"
+                  >
+            <DataGrid.CommandBindings>
+                <CommandBinding Command="{x:Static ApplicationCommands.Copy}" Executed="CommandBinding_Executed_Copy"/>
+                <CommandBinding Command="{x:Static ApplicationCommands.Paste}" Executed="CommandBinding_Executed_Paste"/>
+            </DataGrid.CommandBindings>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="1" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate >
+                            <ContentControl Content="{Binding Path=FirstPair}"  
+                                            MouseDoubleClick="ContentControl_MouseDoubleClick"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="2" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentControl Content="{Binding Path=SecondPair}" 
+                                             
+                                            MouseDoubleClick="ContentControl_MouseDoubleClick"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="3" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentControl Content="{Binding Path=ThirdPair}" 
+                                             
+                                            MouseDoubleClick="ContentControl_MouseDoubleClick"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="4" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentControl Content="{Binding Path=FourthPare}" 
+                                             
+                                            MouseDoubleClick="ContentControl_MouseDoubleClick"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="5" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ContentControl Content="{Binding Path=FifthPair}" 
+                                            
+                                            MouseDoubleClick="ContentControl_MouseDoubleClick"
+                                            HorizontalContentAlignment="Stretch"
+                                            VerticalContentAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Header" Value="{Binding Path=Day}"/>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.RowHeaderStyle>
+                <Style TargetType="DataGridRowHeader">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Style>
+            </DataGrid.RowHeaderStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="Red"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
+    </Grid>
+</UserControl>
