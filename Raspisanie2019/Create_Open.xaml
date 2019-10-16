@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Raspisanie2019"
         mc:Ignorable="d"
         Title="Создание расписания" 
-        Height="300" 
+        Height="206.667" 
         Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,11 +16,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
             
         </Grid.RowDefinitions>
         <TextBlock Text="Факультет:" 
@@ -32,8 +32,8 @@
                   IsEnabled="False"
                   Grid.Column="1"
                   Grid.Row="0"
+				  Margin="5"
                   VerticalAlignment="Center"
-                  Margin="10 0 0 0"
                   SelectionChanged="CbFak_SelectionChanged"/>
         <TextBlock Text="Учебный год:"
                    Grid.Column="0"
@@ -44,7 +44,7 @@
               Grid.Row="1"
               HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch"
-              Margin="10 0 0 0">
+              Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -88,10 +88,12 @@
                      VerticalAlignment="Center"
                      Margin="10 0 0 0"/>
         <CheckBox Name="ChoosePrototype"
+				  Grid.ColumnSpan="2"
                   Content="Выбрать прототип расписания"
                   Grid.Column="0"
                   Grid.Row="7"
                   VerticalAlignment="Center"
+				  Margin="5"
                   IsEnabled="True"
                   Checked="ChoosePrototype_Checked"/>
         <TextBlock Text="Вид подготовки:"
@@ -103,7 +105,7 @@
                   Grid.Column="3"
                   Grid.Row="0"
                   VerticalAlignment="Center"
-                  Margin="10 0 0 0"
+                  Margin="5"
                   SelectionChanged="CbVidPodg_SelectionChanged"/>
         <TextBlock Text="Программа/Специальность/"
                    Grid.Column="2"
@@ -115,7 +117,7 @@
                   Grid.Column="3"
                   Grid.Row="1"
                   VerticalAlignment="Center"
-                  Margin="10 0 0 0"
+                  Margin="5"
                   SelectionChanged="CbSpecial_SelectionChanged"/>
         <TextBlock Text="Год набора:"
                    Grid.Column="2"
@@ -126,7 +128,7 @@
                   Grid.Column="3"
                   Grid.Row="2"
                   VerticalAlignment="Center"
-                  Margin="10 0 0 0"
+                  Margin="5"
                   SelectionChanged="CbGodNabora_SelectionChanged"/>
         <TextBlock Text="Группа:"
                    Grid.Column="2"
@@ -137,21 +139,20 @@
                   Grid.Column="3"
                   Grid.Row="3"
                   VerticalAlignment="Center"
-                  Margin="10 0 0 0"
+                  Margin="5"
                   SelectionChanged="CbGruppa_SelectionChanged"/>
         <Button Name="btnCreate"
                 Content="Создать"
-                Grid.Column="1"
+                Grid.Column="2"
                 Grid.Row="4"
-                Grid.ColumnSpan="2"
+				Margin="5"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center" 
                 Click="BtnCreate_Click"/>
         <Button Name="btnCancel"
                 Content="Отмена"
-                Grid.Column="2"
+                Grid.Column="3"
                 Grid.Row="4"
-                Grid.ColumnSpan="2"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center" 
                 Click="BtnCancel_Click"

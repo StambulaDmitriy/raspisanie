@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Raspisanie2019"
         mc:Ignorable="d"
-        Title="AddDataToCell" 
-        Height="200" 
+        Title="Редактирование" 
+        Height="285" 
         Width="500" 
         WindowStartupLocation="Manual" 
-        WindowStyle="ToolWindow"
+		ResizeMode="NoResize"
+        WindowStyle="ThreeDBorderWindow"
         >
 	<!--<Window.Background>
         <SolidColorBrush Opacity="0"/>
@@ -30,12 +31,12 @@
                 </GradientBrush.GradientStops>
             </LinearGradientBrush>
         </Border.Background>-->
-		<Grid>
+		<Grid Margin="5">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="0.3*"/>
-				<RowDefinition Height="0.1*"/>
-				<RowDefinition Height="0.8*"/>
-				<RowDefinition Height="0.25*"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="0.6*"/>
@@ -45,7 +46,7 @@
 			<RadioButton Name="Single"
                          Grid.Row="0"
                          VerticalAlignment="Center"
-                         Content="Любая неделя"
+                         Content="Без разделения"
                          HorizontalAlignment="Center"
                          Checked="Single_Checked"
                          GroupName="RbGr1"
@@ -55,7 +56,7 @@
                          Grid.Row="0"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Center"
-                         Content="Верхняя/Нижняя"
+                         Content="С разделением"
                          Checked="Splited_Checked"
                          GroupName="RbGr1"
                          />
@@ -73,6 +74,7 @@
                              HorizontalAlignment="Center"
                              IsEnabled="False"
                              Checked="Up_Checked"
+							 Margin="4"
                              />
 				<RadioButton Name="Down"
                              Grid.Row="1"
@@ -81,6 +83,7 @@
                              VerticalAlignment="Center"
                               HorizontalAlignment="Center"
                              IsEnabled="False"
+							 Margin="4"
                              Checked="Down_Checked"
                              />
 			</Grid>
@@ -121,11 +124,12 @@
                           Grid.Row="0"
                           Grid.ColumnSpan="3" 
                           VerticalAlignment="Center"
-                          Margin="0,0,10,0"
+						  Margin="5"
                           SelectionChanged="CbDiscips_SelectionChanged"
                           IsEnabled="False"
                           IsTextSearchEnabled="True"
                           IsEditable="True"
+						  
                           
                           >
 				</ComboBox>
@@ -135,11 +139,11 @@
                            VerticalAlignment="Center"
                            Margin=" 10 0 0 0 "/>
 				<ComboBox Name="cbVidZanyatiy"
+						  Margin="5"
                           Grid.Column="1" 
                           Grid.Row="1"
                           Grid.ColumnSpan="1"
                           VerticalAlignment="Center"
-                          Margin="0,0,10,0"
                           SelectionChanged="CbVidZanyatiy_SelectionChanged"
                           IsEnabled="False"
                           IsTextSearchEnabled="True"
@@ -149,10 +153,10 @@
                            Text="Подгруппа:" 
                            VerticalAlignment="Center"/>
 				<ComboBox Name="cbPodgruppa" 
+						  Margin="5"
                           Grid.Column="3" 
                           Grid.Row="1"
                           VerticalAlignment="Center"
-                          Margin="0,0,10,0"
                           IsEnabled="False"
                           SelectionChanged="CbPodgruppa_SelectionChanged"
                           IsTextSearchEnabled="True"
@@ -171,10 +175,10 @@
                            VerticalAlignment="Center"
                            Margin="10 0 0 0"/>
 				<ComboBox Name="cbKorpusa"
+						  Margin="5"
                           Grid.Column="1" 
                           Grid.Row="2"
                           VerticalAlignment="Center"
-                          Margin="0,0,10,0"
                           SelectionChanged="CbKorpusa_SelectionChanged"
                           IsEnabled="False"
                           IsTextSearchEnabled="True"
@@ -188,7 +192,7 @@
                           Grid.Column="3" 
                           Grid.Row="2"
                           VerticalAlignment="Center"
-                          Margin="0,0,10,0"
+                          Margin="5"
                           IsEnabled="False"
                           SelectionChanged="CbAuditorii_SelectionChanged"
                           IsTextSearchEnabled="True"
@@ -205,7 +209,7 @@
                           Grid.Row="3"
                           Grid.ColumnSpan="3"
                           VerticalAlignment="Center"
-                          Margin="0,0,10,0"
+                          Margin="5"
                           IsEnabled="False"
                           SelectionChanged="CbPreps_SelectionChanged"
                           IsTextSearchEnabled="True"
@@ -214,26 +218,25 @@
 			<Button Name="btnCancel" 
                     Grid.Row="3" 
                     Grid.Column="0" 
-                    Grid.ColumnSpan="1" 
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
                     Content="Отменить" 
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Right"
                     Click="btnCancel_Click"/>
 			<Button Name="btnSaveExit" 
                     Grid.Row="3"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
                     Grid.Column="1" 
                     Grid.ColumnSpan="1" 
                     Content="Сохранить/Выйти" 
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
                     Click="BtnSaveExit_Click"/>
 			<Button Name="btnClear" 
                     Grid.Row="3" 
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center"
                     Grid.Column="2" 
                     Grid.ColumnSpan="1" 
                     Content="Очистить"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
                     Click="BtnClear_Click"/>
 		</Grid>
 	<!--</Border>-->
