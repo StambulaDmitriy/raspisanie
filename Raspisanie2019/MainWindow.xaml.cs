@@ -41,7 +41,7 @@ namespace Raspisanie2019
                 CO.god_nabora,
                 CO.vid_podgotovki,
                 CO.prog_spec,
-                Convert.ToInt32(CO.tbYears.Text),
+                Convert.ToInt32(CO.cbYear.SelectedItem.ToString().Substring(0, 4)),
                 Convert.ToBoolean(CO.rbOsenniy.IsChecked),
                 CO.gruppa,
                 CO.id_rasp_year);
@@ -70,7 +70,7 @@ namespace Raspisanie2019
                             //    buf = NewTab.myLessons.First((x) => x.Day == innerSDR.GetString(0));
                             //}
                             #endregion
-                            buf = NewTab.myLessons.First((x) => x.Day == SDR["name"].ToString())[Convert.ToInt32(SDR["Nom"]) - 1];
+                            buf = NewTab.myLessons.First((x) => x.Day == SDR["day"].ToString())[Convert.ToInt32(SDR["Nom"]) - 1];
                             if (Convert.ToInt32(SDR["pr_ned"]) == 0)
                             {
                                 buf.CollectionOfItems.Add(

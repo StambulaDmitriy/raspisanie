@@ -29,7 +29,8 @@ namespace Raspisanie2019
         public int god_nabora;
         public int gruppa;
         public int id_rasp_year;
-        Dictionary<int, string> Faks = new Dictionary<int, string>(0);
+		List<string> uchYears;
+		Dictionary<int, string> Faks = new Dictionary<int, string>(0);
         Dictionary<int, string> VidiPodg = new Dictionary<int, string>(0);
         Dictionary<int, string> Specials = new Dictionary<int, string>(0);
         Dictionary<int, string> Grupps = new Dictionary<int, string>(0);
@@ -44,10 +45,16 @@ namespace Raspisanie2019
         public Create_Open()
         {
             InitializeComponent();
-            
-            //int key = VidiPodg.FirstOrDefault(x => x.Value == "one").Key;
-            //Выбор факультетов
-            using (SqlCommand SC = new SqlCommand(Db.SQLCommands.GetFaks, Db.myConnection))
+			uchYears = new List<string>();
+			for (int i = DateTime.Now.Year - 4; i < DateTime.Now.Year + 2; i++)
+			{
+				uchYears.Add(String.Format("{0} - {1}", i, i + 1));
+			}
+			cbYear.ItemsSource = uchYears;
+			cbYear.SelectedIndex = 4;
+			//int key = VidiPodg.FirstOrDefault(x => x.Value == "one").Key;
+			//Выбор факультетов
+			using (SqlCommand SC = new SqlCommand(Db.SQLCommands.GetFaks, Db.myConnection))
             {
                 SDR = SC.ExecuteReader();
                 //пропуск записи <<Все факультеты>>
@@ -121,98 +128,6 @@ namespace Raspisanie2019
             }
         }
 
-        private void CbYears_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Space)
-            {
-                e.Handled = true;
-                return;
-            }
-            if(e.Key == Key.Back)
-            {
-                tbYears.Text.Remove(--tbYears.CaretIndex, 1);
-                tbYears.Text.Insert(tbYears.CaretIndex, "*");
-                e.Handled = true;
-                return;
-            }
-        }
-
-        private void CbYears_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if(!char.IsDigit(e.Text,0))
-            {
-                e.Handled = true;
-                return;
-            }
-            //if (tbYears.Text.Length == 3)
-            //     tbYear.Text = " - " + (Convert.ToInt32(tbYears.Text + e.Text) - 1).ToString();
-            try
-            {
-                int bufIndex = tbYears.CaretIndex;
-                tbYears.Text = tbYears.Text.Remove(tbYears.CaretIndex, 1);
-                tbYears.CaretIndex = bufIndex;
-                if (tbYears.Text.IndexOf('*') < 0)
-                    tbYear.Text = " - " + (Convert.ToInt32(tbYears.Text + e.Text) + 1).ToString();
-            }
-            catch (Exception exc)
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void CbYears_GotFocus(object sender, RoutedEventArgs e)
-        {
-            tbYears.CaretIndex = 0;
-            e.Handled = true;
-        }
-
-        private void CbYears_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            tbYears.IsEnabled = true;
-            tbYears.Focus();
-        }
-
-        private void CbYears_PreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
-            //cbYears.Focus();
-            tbYears.CaretIndex = 0;
-            tbYears.IsEnabled = true;
-        }
-
-        private void TbYears_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
-
-        private void TbYears_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Space)
-            {
-                e.Handled = true;
-                return;
-            }
-            if (e.Key == Key.Back)
-            {
-                if (tbYears.CaretIndex == 0)
-                {
-                    e.Handled = true;
-                    return;
-                }
-                    int bufIndex = tbYears.CaretIndex;
-                tbYears.Text = tbYears.Text.Remove(--tbYears.CaretIndex, 1);
-                tbYears.CaretIndex = bufIndex;
-                tbYears.Text = tbYears.Text.Insert(tbYears.CaretIndex, "*");
-                tbYears.CaretIndex = bufIndex - 1;
-                tbYear.Text = "";
-                e.Handled = true;
-                return;
-            }
-            if (e.Key == Key.Delete)
-            {
-                e.Handled = true;
-                return;
-            }
-        }
 
         private void CbFak_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -365,8 +280,7 @@ namespace Raspisanie2019
                 cbSpecial.SelectedIndex == -1 ||
                 cbGodNabora.SelectedIndex == -1 ||
                 cbGruppa.SelectedIndex == -1 ||
-                (rbOsenniy.IsChecked == false && rbVesenniy.IsChecked == false) ||
-                tbYear.Text == "")
+                (rbOsenniy.IsChecked == false && rbVesenniy.IsChecked == false))
             {
                 MessageBox.Show("Введены не все данные");
                 return;
@@ -378,8 +292,8 @@ namespace Raspisanie2019
             using (SqlCommand SC = new SqlCommand(Db.SQLCommands.GetFromRaspYear, Db.myConnection))
             {
                 SC.Parameters.AddWithValue("@kod_grup",gruppa);
-                SC.Parameters.AddWithValue("@uch_god",tbYears.Text);
-                SC.Parameters.AddWithValue("@vid_podg",vid_podgotovki);
+				SC.Parameters.AddWithValue("@uch_god",cbYear.SelectedItem.ToString().Substring(0,4));
+				SC.Parameters.AddWithValue("@vid_podg",vid_podgotovki);
                 SC.Parameters.AddWithValue("@k_ft",kod_ft);
                 SC.Parameters.AddWithValue("@n_sem", Convert.ToInt32(rbVesenniy.IsChecked));
                 using (SqlDataReader SDR = SC.ExecuteReader())
