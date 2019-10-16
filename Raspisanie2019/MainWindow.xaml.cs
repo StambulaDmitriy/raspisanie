@@ -415,7 +415,7 @@ namespace Raspisanie2019
                         //    buf = NewTab.myLessons.First((x) => x.Day == innerSDR.GetString(0));
                         //}
                         #endregion
-                        buf = NewTab.myLessons.First((x) => x.Day == SDR["name"].ToString())[Convert.ToInt32(SDR["Nom"]) - 1];
+                        buf = NewTab.myLessons.First((x) => x.Day == SDR["day"].ToString())[Convert.ToInt32(SDR["Nom"]) - 1];
                         if (Convert.ToInt32(SDR["pr_ned"]) == 0)
                         {
                             buf.CollectionOfItems.Add(

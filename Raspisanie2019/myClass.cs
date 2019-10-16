@@ -191,14 +191,14 @@ namespace Raspisanie2019
             /// </summary>
             public static string InsertToRaspDiscip =
                 "insert UUS.dbo.[RASP_DISCIP] " +
-                "(ID_RASP_YEAR,D_NED,PR_NED,ID_RASP_TIME,ID_NAGRUZKA_VID,ID_AUD,K_DISCIP,DATE_S, PODGRUPPA) " +
+                "(ID_RASP_YEAR,D_NED,PR_NED,ID_RASP_TIME,ID_NAGRUZKA_VID,ID_AUD,K_DISCIP,DATE_S, PODGRUPPA, ACTUAL) " +
                 "values(@id_rasp_year, " +
                 "(select id from [UUS].[dbo].[SP_DAY] " +
                 " where [day] like @d_ned), " +
                 "@pr_ned, " +
                 "(select [id] from [UUS].[dbo].[RASP_Time] " +
                 "where nom = @i and actual = 1), " +
-                "@vid_podg, @codeAudit, @codeDisc, GETDATE(), @codepodgr)";
+                "@vid_podg, @codeAudit, @codeDisc, GETDATE(), @codepodgr, 1)"; // костыль с акутальностью
 
             /// <summary>
             /// запрос по назначению преподавателя для учебной пары расписания
