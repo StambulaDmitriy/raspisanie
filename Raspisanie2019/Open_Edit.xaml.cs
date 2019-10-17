@@ -36,13 +36,12 @@ namespace Raspisanie2019
         Dictionary<int, string> Specials = new Dictionary<int, string>(0);
         Dictionary<int, string> Grupps = new Dictionary<int, string>(0);
         Dictionary<int, string> GodiNabora = new Dictionary<int, string>(0);
-        public ObservableCollection<Item> DGItems = new ObservableCollection<Item>(new List<Item>(0));
+		public ObservableCollection<Item> DGItems;
         List<int> IDs = new List<int>(0);
         List<int> Years = new List<int>(0);
         public Open_Edit()
         {
             InitializeComponent();
-
             // заполнение id
             using (SqlCommand SC = new SqlCommand(Db.SQLCommands.GetRasps, Db.myConnection))
             {
@@ -383,6 +382,9 @@ namespace Raspisanie2019
             public int Kurs { get; set; }
             public int Npp_g { get; set; }
             public int kod_fo { get; set; }
+			public Item() {
+
+			}
             public Item(int Id, string gruppa, int Kod_grup, int Uch_god, string sem, int N_sem, string namefak, int k_ft, string namepodg, int Vid_podg, int Kurs, int Npp_g, int kod_fo)
             {
                 this.Id = Id;
@@ -402,7 +404,7 @@ namespace Raspisanie2019
         }
         void Filt()
         {
-            using (SqlCommand SC = new SqlCommand(Db.SQLCommands.GetRasps, Db.myConnection))
+			using (SqlCommand SC = new SqlCommand(Db.SQLCommands.GetRasps, Db.myConnection))
             {
                 if(cbIdRasp.SelectedIndex != -1)
                 {
@@ -452,27 +454,29 @@ namespace Raspisanie2019
                     SC.Parameters.AddWithValue("@kod_grup", Grupps.FirstOrDefault(x => x.Value == cbGruppa.SelectedItem.ToString()).Key);
                 }
                 SDR = SC.ExecuteReader();
-                DGItems.Clear();
                 DG.Items.Clear();
                 while(SDR.Read())
                 {
-                    DGItems.Add(new Item(
-                        Convert.ToInt32(SDR["id"]),
-                        SDR["name_grup"].ToString(),
-                        Convert.ToInt32(SDR["KOD_GRUP"]),
-                        Convert.ToInt32(SDR["UCH_GOD"]),
-                        (Convert.ToInt32(SDR["N_SEM"]) == 0)? "Осенний":"Весенний",
-                        Convert.ToInt32(SDR["N_SEM"]),
-                        SDR["fak_name"].ToString(),
-                        Convert.ToInt32(SDR["k_ft"]), 
-                        SDR["namepodg"].ToString(),
-                        Convert.ToInt32(SDR["vid_podg"]),
-                        Convert.ToInt32(SDR["kurs"]),
-                        Convert.ToInt32(SDR["npp_g"]),
-                        Convert.ToInt32(SDR["kod_fo"])));
+					Item t = new Item();
+					t.Id = Convert.ToInt32(SDR["id"]);
+					t.gruppa = SDR["name_grup"].ToString();
+					t.Kod_grup = Convert.ToInt32(SDR["KOD_GRUP"]);
+					t.Uch_god = Convert.ToInt32(SDR["UCH_GOD"]);
+					t.sem = (Convert.ToInt32(SDR["N_SEM"]) == 0) ? "Осенний" : "Весенний";
+					t.N_sem = Convert.ToInt32(SDR["N_SEM"]);
+					t.namefak = SDR["fak_name"].ToString();
+					t.k_ft = Convert.ToInt32(SDR["k_ft"]);
+					t.namepodg = SDR["namepodg"].ToString();
+					t.Vid_podg = Convert.ToInt32(SDR["vid_podg"]);
+					t.Kurs = Convert.ToInt32(SDR["kurs"]);
+					t.Npp_g = Convert.ToInt32(SDR["npp_g"]);
+					t.kod_fo = Convert.ToInt32(SDR["kod_fo"]);
+
+					DG.Items.Add(t); 
                 }
-                DG.ItemsSource = DGItems;
-                DG.Items.Refresh();
+				
+                //DG.ItemsSource = DGItems;
+                //DG.Items.Refresh();
             }
         }
 

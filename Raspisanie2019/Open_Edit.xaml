@@ -149,36 +149,24 @@
                   VerticalAlignment="Center"
                   Margin="0 0 0 0"
                   SelectionChanged="CbGruppa_SelectionChanged"/>
-        <DataGrid Name="DG" 
-                  ItemsSource="{Binding}"
+        <ListView Name="DG" 
                   Grid.Row="2"
                   Grid.ColumnSpan="8"
                   HorizontalAlignment="Stretch"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
                   MouseDoubleClick="DataGridCell_MouseDoubleClick">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" 
-                                    IsReadOnly="True"
-                                    Binding="{Binding Path=Id}"/>
-                <DataGridTextColumn Header="Группа"
-                                    IsReadOnly="True"
-                                    Binding="{Binding Path=gruppa}"/>
-                <DataGridTextColumn Header="Факультет"
-                                    IsReadOnly="True"
-                                    Binding="{Binding Path=namefak}"/>
-                <DataGridTextColumn Header="Учебный год"
-                                    IsReadOnly="True"
-                                    Binding="{Binding Path=Uch_god}"/>
-                <DataGridTextColumn Header="Семестр"
-                                    IsReadOnly="True"
-                                    Binding="{Binding Path=sem}"/>
-                <DataGridTextColumn Header="Вид подготовки"
-                                    IsReadOnly="True"
-                                    Binding="{Binding Path=namepodg}"/>
-            </DataGrid.Columns>
+			<ListView.View>
+				<GridView>
+					<GridViewColumn DisplayMemberBinding="{Binding Path=Id}">Id</GridViewColumn>
+					<GridViewColumn DisplayMemberBinding="{Binding Path=gruppa}">Группа</GridViewColumn>
+					<GridViewColumn DisplayMemberBinding="{Binding Path=namefak}">Факультет</GridViewColumn>
+					<GridViewColumn DisplayMemberBinding="{Binding Path=Uch_god}">Учебный год</GridViewColumn>
+					<GridViewColumn DisplayMemberBinding="{Binding Path=sem}">Семестр</GridViewColumn>
+					<GridViewColumn DisplayMemberBinding="{Binding Path=namepodg}">Вид подготовки</GridViewColumn>
+
+				</GridView>
+			</ListView.View>
             <DataGridCell MouseDoubleClick="DataGridCell_MouseDoubleClick"/>
             <DataGridRow MouseDoubleClick="DataGridCell_MouseDoubleClick"/>
-        </DataGrid>
+        </ListView>
     </Grid>
 </Window>
