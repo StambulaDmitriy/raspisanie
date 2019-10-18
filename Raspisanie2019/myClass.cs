@@ -159,7 +159,8 @@ namespace Raspisanie2019
             /// </summary>
             public static string GetAuditorii =
                 @"select id_aud, aud_nomer from [DONNTU].[dbo].[VW_AUD_UCH] " +
-                @"where ID_TIP_NAZNACHENYA = 1 and aud_korpus = @aud_korpus ";
+                @"where ID_TIP_NAZNACHENYA = 1 and aud_korpus = @aud_korpus " +
+                @"order by aud_nomer";
 
             /// <summary>
             /// запрос на получение преподавателей

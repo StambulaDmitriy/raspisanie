@@ -19,6 +19,7 @@
                   HorizontalAlignment="Stretch"
                   Grid.ColumnSpan="2"
                   ClipboardCopyMode="ExcludeHeader"
+				  VirtualizingPanel.ScrollUnit="Pixel"
                   >
             <DataGrid.CommandBindings>
                 <CommandBinding Command="{x:Static ApplicationCommands.Copy}" Executed="CommandBinding_Executed_Copy"/>

@@ -488,6 +488,7 @@ namespace Raspisanie2019
                 EditCell();
             }
             catch { }
+            
         }
 
         private void CbPreps_SelectionChanged(object sender, SelectionChangedEventArgs e)
